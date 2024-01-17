@@ -37,7 +37,8 @@ class TlsComputeForm(forms.ModelForm):
 
 
 class SocketComputeForm(forms.ModelForm):
-    hostname = forms.CharField(widget=forms.HiddenInput, initial="localhost")
+    #TSC permit the hostname management on sockets; this enables the connect from inside docker-container to the host-ip for spice/vnc, although the libvirt communication uses a (performant) socket
+    hostname = forms.CharField(validators=[validate_hostname])
     type = forms.IntegerField(widget=forms.HiddenInput, initial=CONN_SOCKET)
 
     class Meta:
