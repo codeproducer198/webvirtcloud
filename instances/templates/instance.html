@@ -413,7 +413,7 @@
                             maxTicksLimit: 10,
                             maxRotation: 0,
                             minRotation: 0,
-                            stepSize: 10,
+                            stepSize: 100,
                         },
                     }],
                     yAxes: [{
@@ -463,7 +463,7 @@
                             maxTicksLimit: 10,
                             maxRotation: 0,
                             minRotation: 0,
-                            stepSize: 10,
+                            stepSize: 100,
                         },
                     }],
                     yAxes: [{
@@ -520,7 +520,7 @@
                                 maxTicksLimit: 10,
                                 maxRotation: 0,
                                 minRotation: 0,
-                                stepSize: 10,
+                                stepSize: 100,
                             },
                         }],
                         yAxes: [{
@@ -578,7 +578,7 @@
                                 maxTicksLimit: 10,
                                 maxRotation: 0,
                                 minRotation: 0,
-                                stepSize: 10,
+                                stepSize: 100,
                             },
                         }],
                         yAxes: [{
@@ -610,7 +610,7 @@
             $.getJSON("{% url 'instances:stats' instance.id %}", function (data) {
                 cpuChart.data.labels.push(data.timeline);
                 cpuChart.data.datasets[0].data.push(data.cpudata);
-                if (cpuChart.data.datasets[0].data.length > 10){
+                if (cpuChart.data.datasets[0].data.length > 100){
                     cpuChart.data.labels.shift();
                     cpuChart.data.datasets[0].data.shift();
                 }
@@ -620,7 +620,7 @@
                 memChart.options.scales.yAxes[0].ticks.max = parseInt(data.memdata.total / 1024);
                 memChart.options.scales.yAxes[0].ticks.stepSize = parseInt(data.memdata.total / (1024 * 5));
                 memChart.data.datasets[0].data.push(data.memdata.used / 1024);
-                if (memChart.data.datasets[0].data.length > 10){
+                if (memChart.data.datasets[0].data.length > 100){
                     memChart.data.labels.shift();
                     memChart.data.datasets[0].data.shift();
                 }
@@ -631,7 +631,7 @@
 
                     diskChart[data.blkdata[j].dev].data.datasets[0].data.push(data.blkdata[j].data[0]);
                     diskChart[data.blkdata[j].dev].data.datasets[1].data.push(data.blkdata[j].data[1]);
-                    if (diskChart[data.blkdata[j].dev].data.datasets[0].data.length > 10){
+                    if (diskChart[data.blkdata[j].dev].data.datasets[0].data.length > 100){
                         diskChart[data.blkdata[j].dev].data.labels.shift();
                         diskChart[data.blkdata[j].dev].data.datasets[0].data.shift();
                         diskChart[data.blkdata[j].dev].data.datasets[1].data.shift();
@@ -644,7 +644,7 @@
 
                     netChart[data.netdata[j].dev].data.datasets[0].data.push(data.netdata[j].data[0]);
                     netChart[data.netdata[j].dev].data.datasets[1].data.push(data.netdata[j].data[1]);
-                    if (netChart[data.netdata[j].dev].data.datasets[0].data.length > 10){
+                    if (netChart[data.netdata[j].dev].data.datasets[0].data.length > 100){
                         netChart[data.netdata[j].dev].data.labels.shift();
                         netChart[data.netdata[j].dev].data.datasets[0].data.shift();
                         netChart[data.netdata[j].dev].data.datasets[1].data.shift();
