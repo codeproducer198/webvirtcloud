@@ -57,6 +57,11 @@
             return;
         }
 
+        // #TSC if the original request is https, set here also wss
+        if (window.location.protocol == 'https:') {
+            scheme = "wss://";
+        }
+
         if (sc) {
             sc.stop();
         }
